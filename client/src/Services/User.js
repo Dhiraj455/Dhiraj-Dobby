@@ -1,7 +1,7 @@
 import axios from "axios";
 // const axios = require("axios").default;
 
-let url = "https://dhiraj-dobby1.onrender.com"
+// let url = "https://dhiraj-dobby1.onrender.com"
 
 export const register = async (form) => {
   return await axios.post(`https://dhiraj-dobby1.onrender.com/register`, form, {
