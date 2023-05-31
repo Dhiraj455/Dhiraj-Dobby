@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import { Container, Row, Col } from "reactstrap";
 import { toast } from "react-toastify";
+import AddImage from "../Components/AddImage";
 
 const ProfilePic = styled.div`
   display: flex;
@@ -48,6 +49,7 @@ const Home = () => {
   const fileRef = useRef(null);
   const navigate = useNavigate();
   const [images, setImages] = useState();
+  const [showModal, setShowModal] = useState(false);
   const [posts, setPosts] = useState({
     title: "",
   });
@@ -144,6 +146,14 @@ const Home = () => {
           </form>
         </div>
       </section>
+      <button
+        onClick={() => {
+          setShowModal(true);
+        }}
+      >
+        pop
+      </button>
+      {showModal && <AddImage setShowModal={setShowModal} />}
     </>
   );
 };

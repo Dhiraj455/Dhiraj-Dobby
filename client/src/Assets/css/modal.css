@@ -49,9 +49,13 @@
     font-weight: 500;
     font-size: 1.1rem;
   }
+
+  .text-center{
+    color: #fff;
+  }
   
   .input__item input {
-    width: 100%;
+    width: 90%;
     border: 1px solid rgba(221, 221, 221, 0.274);
     background: transparent;
     color: #fff;
@@ -59,6 +63,10 @@
     border-radius: 5px;
     outline: none;
     font-size: 0.8rem;
+  }
+
+  .input__item input::placeholder{
+    color: #fff;
   }
   
   .input__item h6 {
