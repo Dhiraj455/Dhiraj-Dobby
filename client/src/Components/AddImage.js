@@ -37,7 +37,7 @@ const PseudoProfile = styled.div`
   font-weight: 600;
   color: white;
   width: 150px;
-  height: 100px;
+  height: 150px;
   border: 6px solid;
   border-color: #001825;
   border-radius: 50%;
@@ -114,7 +114,7 @@ const AddImage = ({ setShowModal }) => {
               onChange={handlePic}
             />
             <button
-              className="bid__btn d-flex align-items-center gap-5 pad place__bid-btn"
+              className="bid__btn d-flex align-items-center gap-3 pad place__bid-btn"
               onClick={() => {
                 fileRef.current.click();
               }}
@@ -138,7 +138,7 @@ const AddImage = ({ setShowModal }) => {
             </div>
             <br />
             <button
-              className="bid__btn d-flex align-items-center gap-5 pad place__bid-btn"
+              className="bid__btn d-flex align-items-center gap-3 pad place__bid-btn"
               onClick={handleAdd}
             >
               <i className="ri-add-line"></i> Post

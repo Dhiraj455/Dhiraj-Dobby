@@ -1,3 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body{
+  margin: 0;
+}
+
 .modal__wrapper {
     position: fixed;
     top: 0;
@@ -55,7 +65,7 @@
   }
   
   .input__item input {
-    width: 90%;
+    width: 100%;
     border: 1px solid rgba(221, 221, 221, 0.274);
     background: transparent;
     color: #fff;
