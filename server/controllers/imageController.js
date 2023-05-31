@@ -8,12 +8,13 @@ module.exports.postImage = async (req, res) => {
     message: "",
     errMessage: "",
   };
-  console.log("Hello");
   const { title } = req.body;
   const userId = req.user._id;
   let post;
-  console.log(req.file);
-  console.log(title);
+  if(userId === undefined){
+    response.errMessage = "User not found";
+    return res.status(400).json(response);
+  }
   if (req.file) {
     post = process.env.URL + "/images/" + req.file.filename;
   } else {
@@ -65,6 +66,14 @@ module.exports.getUserImages = async (req, res) => {
       });
     } else {
       images = await Image.find({ createdBy: userId });
+    }
+    if(userId === undefined){
+      response.errMessage = "User not found";
+      return res.status(400).json(response);
+    }
+    if(images.length === 0){
+      response.errMessage = "No images found";
+      return res.status(400).json(response);
     }
     // const images = await Image.find({ createdBy: userId });
     response.success = true;

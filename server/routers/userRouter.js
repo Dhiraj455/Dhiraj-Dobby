@@ -10,7 +10,7 @@ router.post("/login", authcontrol.login);
 router.get("/logout", (req, res) => {
   console.log("Logout");
   res.clearCookie("jwttoken", { path: "/" });
-  res.send("Logout Successful");
+  res.json({message : "Logout Successful"});
 });
 
 module.exports = router;

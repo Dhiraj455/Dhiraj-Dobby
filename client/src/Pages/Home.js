@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AddImage from "../Components/AddImage";
 import { getUserImages } from "../Services/Image";
+import { Logout } from "../Services/User";
 import ImageCard from "../Components/ImageCard";
 import { Container, Row, Col } from "reactstrap";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -10,14 +12,16 @@ const Home = () => {
   const [imageData, setImageData] = useState([]);
 
   useEffect(() => {
-    console.log("Home Page");
     getUserImages(search)
       .then((res) => {
-        console.log(res.data);
         setImageData(res.data.data);
+        // toast.success(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data.message === "Unauthorized") {
+          window.location.href = "/login";
+        }
+        // toast.error(err.response.data.errMessage);
       });
   }, [search, imageData]);
 
@@ -54,6 +58,17 @@ const Home = () => {
       >
         <i className="ri-add-line"></i>
         Add
+      </button>
+      <button
+        className="d-flex align-items-center gap-3 pad place__bid-btn"
+        onClick={() => {
+          Logout().then((res) => {
+            toast.success(res.data.message);
+            window.location.href = "/login";
+          });
+        }}
+      >
+        Logout
       </button>
       {showModal && <AddImage setShowModal={setShowModal} />}
     </>
