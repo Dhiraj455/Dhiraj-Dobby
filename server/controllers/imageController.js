@@ -46,3 +46,35 @@ module.exports.postImage = async (req, res) => {
     res.status(400).json(response);
   }
 };
+
+module.exports.getUserImages = async (req, res) => {
+  let response = {
+    success: false,
+    message: "",
+    errMessage: "",
+    data: [],
+  };
+  try {
+    const userId = req.user._id;
+    let search = req.query.search;
+    let images;
+    if (search) {
+      images = await Image.find({
+        createdBy: userId,
+        title: { $regex: search, $options: "i" },
+      });
+    } else {
+      images = await Image.find({ createdBy: userId });
+    }
+    // const images = await Image.find({ createdBy: userId });
+    response.success = true;
+    response.message = "Images fetched successfully";
+    response.data = images;
+    res.status(200).json(response);
+  } catch (err) {
+    console.log("Error", err);
+    response.message = "Something went wrong!";
+    response.errMessage = err.message;
+    res.status(400).json(response);
+  }
+};

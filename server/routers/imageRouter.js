@@ -12,4 +12,6 @@ router.post(
   postController.postImage
 );
 
+router.get("/getUserImages", authentication, postController.getUserImages);
+
 module.exports = router;
