@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ImageSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: true,
     },
@@ -9,6 +9,10 @@ const ImageSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    createdBy : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
     },
 });
 
