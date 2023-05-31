@@ -72,7 +72,7 @@ module.exports.getUserImages = async (req, res) => {
     response.data = images;
     res.status(200).json(response);
   } catch (err) {
-    console.log("Error", err);
+    console.log(err);
     response.message = "Something went wrong!";
     response.errMessage = err.message;
     res.status(400).json(response);

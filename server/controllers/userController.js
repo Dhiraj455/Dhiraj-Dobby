@@ -45,6 +45,7 @@ module.exports.login = async (req, res) => {
     } else {
       const isMatch = await bcrypt.compare(password, user.password);
       token = await user.generateAuthToken();
+      console.log(token);
       const maxAge = 1000 * 60;
       res.cookie("jwttoken", token, {
         httpOnly: true,
@@ -56,7 +57,7 @@ module.exports.login = async (req, res) => {
       if (!isMatch) {
         return res.status(400).json({ message: "Invalid Credentials" });
       } else {
-        res.json({ message: "Login Successful" });
+        res.json({ message: "Login Successful", token: token });
       }
     }
   } catch (err) {
